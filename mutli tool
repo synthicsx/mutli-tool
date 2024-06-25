@@ -1,0 +1,62 @@
+@echo off
+chcp 65001
+title synthicsx multi tool
+color 2
+
+:menu
+cls
+echo [31m███╗   ███╗██╗   ██╗██╗  ████████╗██╗    ████████╗ ██████╗  ██████╗ ██╗     
+echo [31m████╗ ████║██║   ██║██║  ╚══██╔══╝██║    ╚══██╔══╝██╔═══██╗██╔═══██╗██║     
+echo [31m██╔████╔██║██║   ██║██║     ██║   ██║       ██║   ██║   ██║██║   ██║██║     
+echo [31m██║╚██╔╝██║██║   ██║██║     ██║   ██║       ██║   ██║   ██║██║   ██║██║     
+echo [31m██║ ╚═╝ ██║╚██████╔╝███████╗██║   ██║       ██║   ╚██████╔╝╚██████╔╝███████╗
+echo [31m╚═╝     ╚═╝ ╚═════╝ ╚══════╝╚═╝   ╚═╝       ╚═╝    ╚═════╝  ╚═════╝ ╚══════╝    
+echo. 
+
+echo [90mmade by [94m@[32msynthicsx[90m, Type [32m?[90minfo for more information about [32msynthicsx
+
+echo [32m(1) [90mIP configuration 
+echo [32m(2) [90mPing and IP address 
+echo [32m(3) [90mGenerate Nitro Codes
+echo [32m(4) [90mURL shortener
+echo [32m(5) [90mExit 
+set /p choice=Enter your choice:
+
+if "%choice%"=="1" goto check_ip
+if "%choice%"=="2" goto ping_ip
+if "%choice%"=="3" goto generate_nitro
+if "%choice%"=="4" goto url_shortener
+if "%choice%"=="5" exit
+if "%choice%"=="?info" goto info
+
+goto menu
+
+:check_ip
+ipconfig
+pause
+goto menu
+
+:ping_ip
+set /p target_ip=Enter the [32mIP [90maddress to ping:
+ping %target_ip%
+pause 
+goto menu
+
+:generate_nitro
+@echo off
+setlocal enabledelayedexpansion
+python -c "import random, string; print('\n'.join(['https://discord.gift/' + ''.join(random.choices(string.ascii_uppercase + string.digits, k=16)) for _ in range(10)]))"
+pause 
+goto menu
+
+:url_shortener
+set /p url=Enter the [32mURL [90mto shorten:
+echo Shortened URL: https://tinyurl.com/api-create.php?url=%url%
+pause 
+goto menu
+
+:info
+echo [36mGithub: https://github.com/synthicsx
+echo [34mDiscord: @synthicsx[90m
+pause
+goto menu
